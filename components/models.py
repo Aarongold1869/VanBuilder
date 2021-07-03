@@ -65,6 +65,7 @@ class ExternalFeature(models.Model):
 # Framing
 class Framing(models.Model):
     category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None)
+    item = models.CharField(max_length=30, null=True, blank=True)
     material = models.CharField(max_length=30, null=True, blank=True)
     dimensions = models.CharField(max_length=30, null=True, blank=True)
     unit_measure = models.CharField(max_length=30, null=True, blank=True)
@@ -337,15 +338,42 @@ class WaterLevelMonitor(models.Model):
     description = models.TextField(null=True, blank=True)
 
 # Flooring / Walls
+class SubFloor(models.Model):
 
+class Flooring(models.Model):
 
 # Bathroom
+class Shower(models.Model):
 
+class Toilet(models.Model):
+
+class Wall(models.Model):
+
+class Door(models.Model):
 
 # Kitchen
+class CounterTop(models.Model):
 
+class Sink(models.Model):
+
+class Refrigerator(models.Model):
+
+class CookTop(models.Model):
+
+class Microwave(models.Model):
+
+class Oven(models.Model):
+
+class KitchenComponents(models.Model):
 
 # Decorative Finishing
-
+class Backsplash(models.Model):
 
 # Hardware
+class DrawerSlides(models.Model):
+
+class RivNuts(models.Model):
+
+class SwivelSeats(models.Model):
+
+class OtherHardware(models.Model):
