@@ -5,14 +5,23 @@ from django.db import models
 class Van(models.Model):
     make = models.CharField(max_length=30)
     model = models.CharField(max_length=30)
+    year = models.CharField(max_length=30)
+    van_type = models.CharField(max_length=30, null=True, blank=True)
     wheelbase = models.DecimalField(max_digits=15,decimal_places=2)
-    price_low = models.DecimalField(max_digits=15,decimal_places=2)
-    price_high = models.DecimalField(max_digits=15,decimal_places=2)
+    price_new = models.DecimalField(max_digits=15,decimal_places=2)
+    price_used = models.DecimalField(max_digits=15,decimal_places=2)
     max_weight = models.DecimalField(max_digits=15,decimal_places=2)
     engine = models.CharField(max_length=30)
+    transmission = models.CharField(max_length=30)
     drive = models.CharField(max_length=30)
-    width = models.DecimalField(max_digits=15,decimal_places=2)
-    height = models.DecimalField(max_digits=15,decimal_places=2)
+    fuel_capacity = models.DecimalField(max_digits=15,decimal_places=2)
+    mpg = models.DecimalField(max_digits=15,decimal_places=2)
+    cargo_width = models.DecimalField(max_digits=15,decimal_places=2)
+    cargo_height = models.DecimalField(max_digits=15,decimal_places=2)
+    cargo_length = models.DecimalField(max_digits=15,decimal_places=2)
+    external_width = models.DecimalField(max_digits=15,decimal_places=2)
+    external_height = models.DecimalField(max_digits=15,decimal_places=2)
+    external_length = models.DecimalField(max_digits=15,decimal_places=2)
     passengers = models.IntegerField()
 
 class Category(models.Model):
@@ -50,6 +59,14 @@ class Suspension(models.Model):
     category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None)
     brand = models.CharField(max_length=30, null=True, blank=True)
     style = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+
+class Window(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None)
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
     cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -317,6 +334,7 @@ class Faucet(models.Model):
     category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None)
     brand = models.CharField(max_length=30, null=True, blank=True)
     dimensions = models.CharField(max_length=30, null=True, blank=True)
+    water_usage = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -325,6 +343,7 @@ class ShowerHead(models.Model):
     category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None)
     brand = models.CharField(max_length=30, null=True, blank=True)
     dimensions = models.CharField(max_length=30, null=True, blank=True)
+    water_usage = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
@@ -337,43 +356,218 @@ class WaterLevelMonitor(models.Model):
     weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
-# Flooring / Walls
+# Flooring / Walls / Ceiling
 class SubFloor(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    material = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class Flooring(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    material = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+
+class Walls(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    material = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+
+class Ceiling(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    material = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 # Bathroom
 class Shower(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class Toilet(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class Wall(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    material = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class Door(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 # Kitchen
 class CounterTop(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class Sink(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    water_usage = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class Refrigerator(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    power_usage = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class CookTop(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    power_usage = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class Microwave(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    power_usage = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class Oven(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    power_usage = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class KitchenComponents(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    power_usage = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 # Decorative Finishing
 class Backsplash(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    material = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+
+class CabinetFinish(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    material = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+
+class Paint(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 # Hardware
-class DrawerSlides(models.Model):
-
-class RivNuts(models.Model):
+class Drawers(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
 class SwivelSeats(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
-class OtherHardware(models.Model):
+class GeneralHardware(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    unit_measure = models.CharField(max_length=30, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+
+# Ameneties
+class Internet(models.Model):
+    category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None) 
+    brand = models.CharField(max_length=30, null=True, blank=True)
+    Item = models.CharField(max_length=30, null=True, blank=True)
+    dimensions = models.CharField(max_length=30, null=True, blank=True)
+    power_usage = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    cost_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    weight_per_unit = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
