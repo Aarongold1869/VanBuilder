@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.apps import apps
 from components.models import *
 
 import pandas as pd
@@ -64,7 +65,29 @@ def load_vans(table):
         van.save()
 
 def load_components(master_data):
-    return
+    for table in master_data:
+        if table == "Vans" or table == "Categories":
+            continue
+        for i, row in master_data[table].iterrows():
+            category_name = row['category']
+            category = Category.objects.get(name=category_name)
+            component = row['component']
+            model = apps.get_model(app_label="components", model_name=component)
+            obj = model.objects.get_or_create(
+                category = category,
+                item = row['item'],
+                dimensions = row['dimensions']
+            )[0]
+            ignore_fields = [
+                'category',
+                'item',
+                'dimensions',
+                'id'
+            ]
+            for field in model._meta.get_fields():
+                if not field.name in ignore_fields:
+                    obj.field = row[field.name]
+            obj.save
 
 def load_data(master_data):
     load_categories(master_data['Categories'])

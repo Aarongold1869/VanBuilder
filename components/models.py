@@ -40,6 +40,7 @@ class Paint(models.Model):
 
 class RoofRack(models.Model):
     category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None)
+    item = models.CharField(max_length=30, null=True, blank=True)
     brand = models.CharField(max_length=30, null=True, blank=True)
     dimensions = models.CharField(max_length=30, null=True, blank=True)
     material = models.CharField(max_length=30, null=True, blank=True)
@@ -93,6 +94,7 @@ class Framing(models.Model):
 # Insulation
 class SoundInsulation(models.Model):
     category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None)
+    item = models.CharField(max_length=30, null=True, blank=True)
     brand = models.CharField(max_length=30, null=True, blank=True)
     material = models.CharField(max_length=30, null=True, blank=True)
     dimensions = models.CharField(max_length=30, null=True, blank=True)
@@ -103,6 +105,7 @@ class SoundInsulation(models.Model):
 
 class HeatInsulation(models.Model):
     category = models.ForeignKey(Category,on_delete=models.PROTECT,default=None)
+    item = models.CharField(max_length=30, null=True, blank=True)
     brand = models.CharField(max_length=30, null=True, blank=True)
     material = models.CharField(max_length=30, null=True, blank=True)
     dimensions = models.CharField(max_length=30, null=True, blank=True)
