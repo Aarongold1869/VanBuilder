@@ -4,9 +4,38 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .serializers import VehicleListSerializer, VehicleSerializer, VehicleSelectSerializer
+from .serializers import *
 from components.models import Van
 from build.models import Build
+
+@api_view(['POST'])
+def build_create_view(request, *args, **kwargs):
+    serializer = BuildCreateSerializer(data = request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(user = request.user)
+        data = serializer.validated_data
+        build_id = data.get('id')
+        request.session['build_id'] = build_id
+        return Response(serializer.data, status=201)
+    return Response({}, status=400)
+    
+@api_view(['GET'])
+def build_list_view(request, *args, **kwargs):
+    qs = Build.objects.filter(user=request.user)
+    serializer = BuildListSerializer(qs, many=True)
+    return Response(serializer.data, status=200)
+
+@api_view(['GET','POST'])
+def build_select_view(request, *args, **kwargs):
+    serializer = VehicleSelectSerializer(data=request.data) 
+    if serializer.is_valid(raise_exception=True):
+        data = serializer.validated_data
+        build_id = data.get('id')
+        qs = Build.objects.filter(id=build_id) 
+        if not qs.exists():
+            return Response({}, status=404) 
+    request.session['build_id'] = build_id
+    return Response({}, status=201)
 
 def get_paginated_queryset_response(qs, request):
     paginator = PageNumberPagination()
@@ -31,16 +60,21 @@ def vehicle_detail_view(request, van_id, *args, **kwargs):
 
 @api_view(['GET','POST'])
 def vehicle_select_view(request, *args, **kwargs):
-    user = request.user
-    serializer = VehicleSelectSerializer(data=request.data) # get user inut to determine action
+    build_id = request.session.get('build_id')
+    build = Build.objects.get(id=build_id)
+    serializer = VehicleSelectSerializer(data=request.data) 
     if serializer.is_valid(raise_exception=True):
         data = serializer.validated_data
         van_id = data.get('id')
         action = data.get('action')
-        qs = Van.objects.filter(id=van_id) # does stock exist
+        qs = Van.objects.filter(id=van_id)
         if not qs.exists():
             return Response({}, status=404) 
         van = qs.first()
         if action == 'select':
-            Build.objects.get_or_create
+            build.vehicle = van
+            build.save()
         else:
+            build.vehicle = None
+            build.save()
+    return Response({}, status=201)

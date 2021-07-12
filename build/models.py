@@ -9,6 +9,6 @@ User = settings.AUTH_USER_MODEL
 class Build(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=30, null=True, blank=True)
-    vehicle = models.ForeignKey(Van, on_delete=models.PROTECT)
+    vehicle = models.ForeignKey(Van, on_delete=models.SET_NULL, null=True, blank=True)
     budget = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     
