@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SELECT_ACTIONS = ['select', 'remove']
 
 # Application definition
 
@@ -37,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # rest-API
+    'rest_framework',
     # internal
-    'components'
+    'components',
+    'build'
 ]
 
 MIDDLEWARE = [
