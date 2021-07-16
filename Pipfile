@@ -8,6 +8,7 @@ django = "~=3.1"
 pandas = "*"
 openpyxl = "*"
 djangorestframework = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
