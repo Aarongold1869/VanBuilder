@@ -34,14 +34,14 @@ export function BuildListItem(props) {
         window.location.href = `build/${build.id}/components/`
     }
     return <div className='mt-3'>
-        <Card bg='primary' text='white' border="color3" border-width='10px' >
+        <Card border="salmon">
         <Card.Header >{build.build_title}</Card.Header>
         <Card.Body>
             <Card.Title>{build.vehicle_info}</Card.Title>
             <Card.Text>
                 Budget: ${build.budget}
             </Card.Text>
-            <Button onClick={handleLink} variant="secondary rounded-pill" >View Build</Button>
+            <Button variant='bluegreen' onClick={handleLink}>View Build</Button>
         </Card.Body>
         </Card>
     </div>

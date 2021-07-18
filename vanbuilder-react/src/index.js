@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
 import { BuildListComponent } from './builder'
+import { navbar } from './navbar'
 
 const appEl = document.getElementById('root')
 if (appEl) {
@@ -14,6 +15,12 @@ if (appEl) {
 }
 
 const e = React.createElement
+
+const navBarEl = document.querySelectorAll(".navi")
+navBarEl.forEach(container=> {
+    ReactDOM.render(
+        e(navbar, container.dataset), container);
+})
 
 const BuildListEl = document.querySelectorAll('.build-list')
 BuildListEl.forEach(container=> {

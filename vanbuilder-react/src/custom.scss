@@ -1,11 +1,27 @@
 
+$bluegreen: #086070;
+$salmon: #f67362;
+$orange: #fa9039;
+
 $theme-colors: (
-  "primary": #086070,
-  "secondary": #f67362,
-  "color3": #fcb57b
+  "bluegreen": $bluegreen,
+  "salmon": $salmon,
+  "orange": $orange
 );
 
-// $body-bg: #0d7c90;
+$body-bg: $bluegreen;
+// $body-color: ;
+
+.btn-bluegreen {
+  transition-duration: 0.4s;
+  background-color: $bluegreen; 
+  color: white;
+}
+
+.btn-bluegreen:hover {
+  background-color: $salmon !important; 
+  color: white;
+}
 
 @import "node_modules/bootstrap/scss/bootstrap";
 
