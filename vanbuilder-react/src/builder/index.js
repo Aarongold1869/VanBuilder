@@ -1,6 +1,6 @@
-import { VanListComponent } from './components'
+import { BuildListComponent } from './components'
 
 export {
-    VanListComponent,
+    BuildListComponent,
     
 }

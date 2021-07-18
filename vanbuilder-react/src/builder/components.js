@@ -1,14 +1,9 @@
 import React, {useEffect, useState}  from 'react'
+import { BuildList } from './builds'
 
-import {
-    apiBuildCreate, 
-    apiBuildList, 
-    apiBuildSelect, 
-    apiVehicleDetail, 
-    apiVehicleList, 
-    apiVehicleSelect
-} from './lookup'
 
-export function VanListComponent(props) {
-    
+export function BuildListComponent(props) {
+    return <div className={props.className}>
+        <BuildList {...props} />
+    </div>
 }
