@@ -18,13 +18,28 @@ class BuildCreateSerializer(serializers.ModelSerializer):
         ]
 
 class BuildListSerializer(serializers.ModelSerializer):
+    build_title = serializers.SerializerMethodField(read_only=True)
+    vehicle_info = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Build
         fields = [
-            'title', 
-            'vehicle', 
+            'id',
+            'build_title', 
+            'vehicle_info', 
             'budget',
         ]
+    
+    def get_build_title(self, obj):
+        return obj.title.upper()
+
+    def get_vehicle_info(self, obj):
+        make = obj.vehicle.make
+        model = obj.vehicle.model
+        year = obj.vehicle.year
+        van_type = obj.vehicle.van_type
+        wheelbase = obj.vehicle.wheelbase
+        return year + ' ' + make + ' ' + model + ' ' + van_type + ' ' + str(wheelbase) + '"'
+
 
 class BuildSelectSerializer(serializers.Serializer):
     id = serializers.IntegerField()
