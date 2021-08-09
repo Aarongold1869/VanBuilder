@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
 import { BuildListComponent } from './builder'
+import { LandingPage } from './main_pages';
 import { navbar } from './navbar'
 
 const appEl = document.getElementById('root')
@@ -16,10 +17,18 @@ if (appEl) {
 
 const e = React.createElement
 
+// navbar element
 const navBarEl = document.querySelectorAll(".navbar")
 navBarEl.forEach(container=> {
     ReactDOM.render(
         e(navbar, container.dataset), container);
+})
+
+// landing page component
+const landingEl = document.querySelectorAll(".landing-page")
+landingEl.forEach(container=> {
+    ReactDOM.render(
+        e(LandingPage, container.dataset), container);
 })
 
 const BuildListEl = document.querySelectorAll('.build-list')

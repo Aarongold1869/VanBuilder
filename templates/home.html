@@ -2,5 +2,12 @@
 
 {% block content %}
 
+    {% if request.user.is_authenticated %}
+        <div>
+            <p> discover </p>
+        </div>
+    {% else %}
+        <div class='landing-page' ></div>
+    {% endif %}
 
 {% endblock content %}

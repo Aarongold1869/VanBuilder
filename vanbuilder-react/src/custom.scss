@@ -2,26 +2,32 @@
 $bluegreen: #086070;
 $salmon: #f67362;
 $orange: #fa9039;
+$darkgreen: #718778;
 
 $theme-colors: (
   "bluegreen": $bluegreen,
   "salmon": $salmon,
-  "orange": $orange
+  "orange": $orange,
+  "darkgreen": $darkgreen
 );
 
 // $body-bg: $bluegreen;
 // $body-color: ;
 
-.btn-bluegreen {
+.btn-outline-darkgreen {
   transition-duration: 0.4s;
-  background-color: $bluegreen; 
-  color: white;
+  background-color: white;
+  color: $darkgreen;
+  min-width: 200px;
+  outline-width: thick;
 }
 
-.btn-bluegreen:hover {
-  background-color: $salmon !important; 
-  color: white;
+.btn-outline-darkgreen:hover {
+  background-color: $darkgreen !important;
+  color: white !important;
 }
+
+
 
 @import "node_modules/bootstrap/scss/bootstrap";
 
