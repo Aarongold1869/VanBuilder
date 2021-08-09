@@ -16,7 +16,7 @@ if (appEl) {
 
 const e = React.createElement
 
-const navBarEl = document.querySelectorAll(".navi")
+const navBarEl = document.querySelectorAll(".navbar")
 navBarEl.forEach(container=> {
     ReactDOM.render(
         e(navbar, container.dataset), container);
