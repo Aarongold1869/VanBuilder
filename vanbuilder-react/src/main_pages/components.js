@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../icons/logos/Logo.png'
+import arrowButton from '../icons/svgs/arrowButton.svg'
 
 export function LandingPage(props) {
     const handleBuilds = (event) => {
@@ -11,16 +12,14 @@ export function LandingPage(props) {
         window.location.href = `login`
     }
     return <div className='centered'>
-        <div class='row-10'>
-            <div> 
-                <img src={logo} alt="logo" style={{justifyContent:'end', alignItems:'center', marginBottom: 50}} />
-            </div>
-            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginBottom: 15}}> 
-                <div class='butt outline-darkgreen' onClick={handleBuilds} >Start Building</div>
-            </div>
-            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginBottom: 15}}> 
-                <div class='butt outline-darkgreen' onClick={handleLogin} >Login / Signup</div>
-            </div>
+        <img className='main-logo' src={logo} alt="van builter logo" />
+        <div className='btn-group'>
+            <a className='arrow-btn' onClick={handleBuilds} >Start Building 
+                <img src={arrowButton}/>
+            </a>
+            <a className='arrow-btn' onClick={handleLogin} >Login / Signup
+                <img src={arrowButton}/>
+            </a>
         </div>
     </div>
 }
