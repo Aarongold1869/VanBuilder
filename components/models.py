@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Van(models.Model):
+    image = models.ImageField()
     make = models.CharField(max_length=30)
     model = models.CharField(max_length=30)
     year = models.CharField(max_length=30)
@@ -23,6 +24,9 @@ class Van(models.Model):
     external_height = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     external_length = models.DecimalField(max_digits=15,decimal_places=2, null=True, blank=True)
     passengers = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return '{} {} {} - {} {}"'.format(self.year, self.make, self.model, self.van_type, self.wheelbase)
 
 class Category(models.Model):
     name = models.CharField(max_length=30)

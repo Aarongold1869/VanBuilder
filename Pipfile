@@ -9,6 +9,7 @@ pandas = "*"
 openpyxl = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
+pillow = "*"
 
 [dev-packages]
 

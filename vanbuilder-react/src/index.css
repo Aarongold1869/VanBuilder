@@ -139,3 +139,7 @@ code {
 .arrow-btn:hover {
   transform: translateX(5px);
 }
+
+.arrow-btn:active {
+  transform: translateX(-2px);
+}
