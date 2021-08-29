@@ -5,6 +5,9 @@ from rest_framework import serializers
 from components.models import Van
 from ..models import Build
 
+from datetime import datetime
+import os
+
 SELECT_ACTIONS = settings.SELECT_ACTIONS
 
 class BuildCreateSerializer(serializers.ModelSerializer):
@@ -20,6 +23,9 @@ class BuildCreateSerializer(serializers.ModelSerializer):
 class BuildListSerializer(serializers.ModelSerializer):
     build_title = serializers.SerializerMethodField(read_only=True)
     vehicle_info = serializers.SerializerMethodField(read_only=True)
+    last_updated = serializers.SerializerMethodField(read_only=True)
+    image = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Build
         fields = [
@@ -27,6 +33,8 @@ class BuildListSerializer(serializers.ModelSerializer):
             'build_title', 
             'vehicle_info', 
             'budget',
+            'last_updated',
+            'image'
         ]
     
     def get_build_title(self, obj):
@@ -40,6 +48,15 @@ class BuildListSerializer(serializers.ModelSerializer):
         wheelbase = obj.vehicle.wheelbase
         return year + ' ' + make + ' ' + model + ' ' + van_type + ' ' + str(wheelbase) + '"'
 
+    def get_last_updated(self, obj):
+        last_updated = datetime.strftime(obj.updated,"%m/%d/%Y")
+        return last_updated
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        host = request._current_scheme_host
+        image_url = os.path.join(settings.MEDIA_URL, obj.vehicle.image.url)
+        return host + image_url
 
 class BuildSelectSerializer(serializers.Serializer):
     id = serializers.IntegerField()

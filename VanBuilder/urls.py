@@ -21,10 +21,11 @@ from .views import home_view
 
 urlpatterns = [
     path('', home_view),
+    re_path(r'builds?/', include('build.urls')),
 
     path('api/build/', include('build.api.urls')),
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, 

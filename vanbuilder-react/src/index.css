@@ -4,6 +4,7 @@
   --main-orange: #fa9039;
   --main-lightorange: #F5A868;
   --main-darkgreen: #718778;
+  --main-darkgrey: #525252;
 }
 
 body {
@@ -17,6 +18,19 @@ body {
 
 code {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: var(--main-bluegreen);
+  font-weight: bold;
+}
+
+h3 {
+  color: var(--main-darkgrey);
+}
+
+hr {
+  color: var(--main-darkgrey);
 }
 
 /* Navbar CSS */
@@ -100,6 +114,14 @@ code {
   margin-top: 30vh;
 }
 
+.centered hr {
+  width:70%;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
 .main-logo {
   width: 35%;
   /* transition: width 0.1s ease-out */
@@ -120,20 +142,19 @@ code {
   background: white;
   display: flex;
   flex-direction: row;
-  padding: 1rem 3rem;
+  padding: 1rem 0rem;
   border-color: black; 
-  min-width: 220px;
-  justify-content: center;
-  text-align: center;
+  min-width: 300px;
+  justify-content: space-evenly;
+  align-items: center;
   font-weight: bold;
   font-size: x-large;
   color: var(--main-lightorange);
-  transition: transform 0.1s ease-out
+  transition: transform 0.1s ease-out;
 }
 
 .arrow-btn img {
   width: 30px;
-  margin-left: 30px;
 }
 
 .arrow-btn:hover {
@@ -141,5 +162,55 @@ code {
 }
 
 .arrow-btn:active {
-  transform: translateX(-2px);
+  transform: translateX(-1px);
+}
+
+/* Build List Page */
+.build-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.build-list-view-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  width: 70%;
+}
+
+.build-list-item {
+  display: inline-block;
+  border-radius: 20px;
+  color: var(--main-darkgrey);
+  padding: 2rem;
+  margin: 1rem 2rem;
+  border: 3px solid var(--main-bluegreen);
+  transition: border 0.1s ease-out;
+}
+
+.build-list-item:hover {
+  border: 3px solid var(--main-lightorange);
+}
+
+.build-list-item h3 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.build-list-item img {
+  width: 300px;
+  margin: auto;
+}
+
+.build-list-item-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.build-list-item-text {
+  display: flex;
+  flex-direction: column;
 }

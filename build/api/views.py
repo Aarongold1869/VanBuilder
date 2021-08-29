@@ -22,7 +22,7 @@ def build_create_view(request, *args, **kwargs):
 @api_view(['GET'])
 def build_list_view(request, *args, **kwargs):
     qs = Build.objects.filter(user=request.user)
-    serializer = BuildListSerializer(qs, many=True)
+    serializer = BuildListSerializer(qs, context={"request":request}, many=True)
     return Response(serializer.data, status=200)
 
 @api_view(['GET','POST'])

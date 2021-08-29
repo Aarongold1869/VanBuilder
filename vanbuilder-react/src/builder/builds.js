@@ -1,8 +1,5 @@
 import React, {useEffect, useState}  from 'react'
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-
 import { apiBuildList } from './lookup'
 
 export function BuildList() {
@@ -22,7 +19,7 @@ export function BuildList() {
         }
     }, [buildsDidSet, setBuildsDidSet])
 
-    return <div>
+    return <div className='build-list-container'>
         {builds.map((item, index)=> {return <BuildListItem build={item} key={`${index}-{item.id}`} />})}
     </div>
 }
@@ -31,18 +28,18 @@ export function BuildListItem(props) {
     const {build} = props
     const handleLink = (event) => {
         event.preventDefault()
-        window.location.href = `build/${build.id}/components/`
+        window.location.href = `/builds/${build.id}/`
     }
-    return <div className='mt-3'>
-        <Card border="salmon">
-        <Card.Header >{build.build_title}</Card.Header>
-        <Card.Body>
-            <Card.Title>{build.vehicle_info}</Card.Title>
-            <Card.Text>
-                Budget: ${build.budget}
-            </Card.Text>
-            <Button variant='bluegreen' onClick={handleLink}>View Build</Button>
-        </Card.Body>
-        </Card>
+    console.log(build)
+    return <div className='build-list-item' onClick={handleLink}>
+        <div className='build-list-item-content'>
+            <div className='build-list-item-content-text'>
+                <h3>{build.build_title}</h3>
+                <p>Van:&emsp;{build.vehicle_info}</p>
+                <p>Budget:&emsp;${build.budget}</p>
+                <p>Last Updated:&emsp;{build.last_updated}</p>
+            </div>
+            <img src={build.image}/>
+        </div>
     </div>
 }
