@@ -1,19 +1,21 @@
 {% load static %}
 
 <nav id='navbar' class='navbar'>
-    <a class='logo-link' alt='vanbuilder.com logo' href='#home'>
+    <a class='logo-link' alt='vanbuilder.com logo' href='/'>
         <img id='nav-logo' class='nav-logo'  src="{% static 'media\Logo-white-text.2e65ba81.png' %}" />
     </a>
     <ul id='nav-list' class='nav-list'>
-        <li class='nav-list-item'><a classname='nav-link' href='#builds'>Cum</a></li>
+        <li class='nav-list-item'><a classname='nav-link' href='/builds/'>Builds</a></li>
         <li class='nav-list-item'><a classname='nav-link' href='#components'>Components</a></li>
         <li class='nav-list-item'><a classname='nav-link' href='#about'>About</a></li>
         <li class='nav-list-item'><a classname='nav-link' href='#contact'>Contact</a></li>
 
         {% if request.user.is_authenticated %}
-            <li class='nav-list-item'><a classname='nav-link' href='#profile'>Profile</a></li>
+            <li class='nav-list-item'><a classname='nav-link' href='profile'>Profile</a></li>
+            <li class='nav-list-item'><a classname='nav-link' href='/logout/'>Logout</a></li>
         {% else %}
-            <li class='nav-list-item'><a classname='nav-link' href='#Login'>Login</a></li>
+            <li class='nav-list-item'><a classname='nav-link' href='/login/'>Login</a></li>
+            <li class='nav-list-item'><a classname='nav-link' href='/signup/'>Signup</a></li>
         {% endif %}
         
     </ul>
