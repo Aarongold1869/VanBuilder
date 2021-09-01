@@ -29,6 +29,7 @@ urlpatterns = [
     path('signup/', register_view), 
 
     re_path(r'builds?/', include('build.urls')),
+    re_path(r'contact?/', include('contact.urls')),
 
     path('api/build/', include('build.api.urls')),
     

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <div class='form-container'>
+        <h1>{{ title }}</h1>
+        <form method="POST"  enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if request.user.is_authenticated %}
+            {% else %}
+                <label id='name-label' for="name">Name:</label>
+                <input id="name" name="name" type="text"></input>
+                </br>
+
+                <label id='email-label' for="email">Email:</label>
+                <input id="email" name="email" type="email"></input>
+                </br>
+                </br>
+
+            {% endif %}
+            
+                <label id='subject-label' for="subject">Subject:</label>
+                </br>
+                <input id="subject" name="subject" type="text"></input>
+                </br>
+                
+                <label id='message-label' for="message">Message:</label>
+                </br>
+                <textarea id='message' name="message" cols="80" rows="7"></textarea>
+
+                <div>
+                    <button type='submit' class='form-btn'>
+                        Submit
+                    </button>
+                </div>
+        </form>
+    </div>
+{% endblock content %}

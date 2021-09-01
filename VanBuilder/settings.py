@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     # internal
+    'build',
     'components',
-    'build'
+    'contact',
 ]
 
 MIDDLEWARE = [
