@@ -17,11 +17,11 @@ if (appEl) {
 const e = React.createElement
 
 // navbar element
-const navBarEl = document.querySelectorAll(".navbar")
-navBarEl.forEach(container=> {
-    ReactDOM.render(
-        e(navbar, container.dataset), container);
-})
+// const navBarEl = document.querySelectorAll(".navbar")
+// navBarEl.forEach(container=> {
+//     ReactDOM.render(
+//         e(navbar, container.dataset), container);
+// })
 
 // landing page component
 const landingEl = document.querySelectorAll(".landing-page")
