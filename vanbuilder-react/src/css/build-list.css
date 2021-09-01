@@ -1,0 +1,49 @@
+/* Build List Page */
+.build-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
+  
+  .build-list-view-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    width: 70%;
+  }
+  
+  .build-list-item {
+    display: inline-block;
+    border-radius: 20px;
+    color: var(--main-darkgrey);
+    padding: 2rem;
+    margin: 1rem 2rem;
+    border: 3px solid var(--main-bluegreen);
+    transition: border 0.1s ease-out;
+  }
+  
+  .build-list-item:hover {
+    border: 3px solid var(--main-lightorange);
+  }
+  
+  .build-list-item h3 {
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  .build-list-item img {
+    width: 300px;
+    margin: auto;
+  }
+  
+  .build-list-item-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .build-list-item-text {
+    display: flex;
+    flex-direction: column;
+  }

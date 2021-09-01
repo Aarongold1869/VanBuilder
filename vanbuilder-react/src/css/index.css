@@ -1,0 +1,42 @@
+@import "App.css";
+@import "build-list.css";
+@import "buttons.css";
+@import "form.css";
+@import "home.css";
+@import "navbar.css";
+
+:root {
+  --main-bluegreen: #086070;
+  --main-salmon: #f67362;
+  --main-orange: #fa9039;
+  --main-lightorange: #F5A868;
+  --main-darkgreen: #718778;
+  --main-darkgrey: #525252;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: var(--main-bluegreen);
+  font-weight: bold;
+}
+
+h3 {
+  color: var(--main-darkgrey);
+}
+
+hr {
+  color: var(--main-darkgrey);
+}
+

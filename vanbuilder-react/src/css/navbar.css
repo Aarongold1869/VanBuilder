@@ -1,0 +1,71 @@
+/* Navbar CSS */
+.navbar {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--main-bluegreen);
+    font-size: large;
+    font-weight: bold;
+    z-index: 10;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* box-shadow: 0 1px 0 grey; */
+}
+  
+.nav-list {
+    display: flex;
+    margin-right: 1rem;
+}
+  
+.navbar ul {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+  
+.nav-list a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-size: 1.2rem;
+    padding: 1.5rem 1rem;
+    transition: color 0.1s ease-out;
+}
+  
+.nav-list a:hover {
+    color: var(--main-orange);
+}
+  
+.nav-list-item {
+    transition: transform 0.1s ease-out;
+}
+  
+.nav-list-item:hover {
+    transform: translateY(3px);
+}
+  
+.nav-list-item:active {
+    transform: translateY(-2px);
+}
+  
+.nav-logo {
+    max-width: 12rem;
+    padding: 1.2rem 1rem 0 1rem;
+    margin-right: auto;
+    transition: transform 0.1s ease-out;
+} 
+  
+.nav-logo:hover {
+    transform: translateY(3px);
+}
+  
+.nav-logo:active {
+    transform: translateY(-2px);
+}
+  
+.logo-link {
+    padding: 0;
+    margin: 0;
+}

@@ -1,0 +1,25 @@
+/* Home Page */
+.centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30vh;
+  }
+  
+  .centered hr {
+    width:70%;
+  }
+  
+  .left {
+    justify-content: flex-start;
+  }
+  
+  .main-logo {
+    width: 35%;
+    /* transition: width 0.1s ease-out */
+  }
+  
+  /* .main-logo:hover {
+    width: 36%;
+  } */
